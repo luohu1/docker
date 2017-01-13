@@ -3,7 +3,16 @@ FROM centos:7
 MAINTAINER Nginx PHP CentOS
 
 RUN yum -y install epel-release \
-    && yum -y install supervisor nginx php-fpm \
+    && yum -y install \
+        supervisor \
+        nginx \
+        php-fpm \
+        php-gd \
+        php-xml \
+        php-bcmath \
+        php-mysqlnd \
+        php-mcrypt \
+        php-mbstring \
     && yum clean all
 
 RUN mkdir /web
