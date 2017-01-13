@@ -15,9 +15,6 @@ COPY etc/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 COPY etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
 
-COPY www/phpinfo.php /web/
-COPY www/index.html /web/
-
 EXPOSE 80 443
 
 CMD ["/usr/bin/supervisord"]
