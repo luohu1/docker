@@ -3,7 +3,16 @@ FROM centos:7
 MAINTAINER Nginx PHP CentOS
 
 RUN yum -y install epel-release \
-    && yum -y install supervisor nginx php-fpm \
+    && yum -y install \
+        supervisor \
+        nginx \
+        php-fpm \
+        php-gd \
+        php-xml \
+        php-bcmath \
+        php-mysqlnd \
+        php-mcrypt \
+        php-mbstring \
     && yum clean all
 
 RUN mkdir /web
@@ -14,9 +23,6 @@ COPY etc/supervisord.d/supervisord.ini /etc/supervisord.d/supervisord.ini
 COPY etc/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 COPY etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
-
-COPY www/phpinfo.php /web/
-COPY www/index.html /web/
 
 EXPOSE 80 443
 
