@@ -1,0 +1,16 @@
+FROM openresty/openresty:1.15.8.2-7-alpine-fat
+LABEL maintainer="LuoHui <mylhmail@163.com>" version="1.0" license="MIT" app.name="openresty"
+
+ARG timezone
+
+ENV TIMEZONE=${timezone:-"Asia/Shanghai"} \
+    APP_ENV=online
+
+RUN set -ex \
+    && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+    && apk add --no-cache tzdata \
+    && ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+    && echo "${TIMEZONE}" > /etc/timezone \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man
+
+COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
