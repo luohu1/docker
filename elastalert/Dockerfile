@@ -15,7 +15,7 @@ ENV ELASTALERT_VERSION 0.2.4
 
 RUN set -eux \
     && apk add --no-cache python3 python3-dev libffi-dev libnsl-dev \
-    && apk add --virtual .build-deps gcc musl-dev \
+    && apk add --no-cache --virtual .build-deps gcc musl-dev \
     && python3 -m ensurepip \
     && python3 -m pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
     && python3 -m pip install --upgrade pip \
