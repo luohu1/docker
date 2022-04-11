@@ -11,6 +11,8 @@ RUN set -ex \
     && echo "${TIMEZONE}" > /etc/timezone \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man
 
+WORKDIR /elastalert
+
 ENV ELASTALERT_VERSION 0.2.4
 
 RUN set -eux \
@@ -22,4 +24,6 @@ RUN set -eux \
     && python3 -m pip install "setuptools>=11.3" \
     && python3 -m pip install "elasticsearch>=5.0.0" \
     && python3 -m pip install "elastalert==${ELASTALERT_VERSION}" \
-    && apk del --no-network .build-deps
+    && apk del --no-network .build-deps \
+    && mkdir elastalert_modules \
+    && touch elastalert_modules/__init__.py
