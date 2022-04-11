@@ -27,3 +27,5 @@ RUN set -eux \
     && apk del --no-network .build-deps \
     && mkdir elastalert_modules \
     && touch elastalert_modules/__init__.py
+
+CMD ["elastalert", "--config=/etc/elastalert/config.yaml", "--verbose"]
