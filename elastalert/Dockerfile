@@ -24,8 +24,6 @@ RUN set -eux \
     && python3 -m pip install "setuptools>=11.3" \
     && python3 -m pip install "elasticsearch>=5.0.0" \
     && python3 -m pip install "elastalert==${ELASTALERT_VERSION}" \
-    && apk del --no-network .build-deps \
-    && mkdir elastalert_modules \
-    && touch elastalert_modules/__init__.py
+    && apk del --no-network .build-deps
 
-CMD ["elastalert", "--config=/etc/elastalert/config.yaml", "--verbose"]
+CMD ["elastalert", "--verbose"]
